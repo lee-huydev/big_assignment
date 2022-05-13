@@ -9,8 +9,8 @@ import { postApi, delApi } from '../data'
     jobs: [],
     isTrue: true
 }
-const api = 'https://db-fake-api.herokuapp.com/expense'
 const Reducer = (state, action) => {
+    const api = 'https://db-fake-api.herokuapp.com/expense'
     switch(action.type) {
         case SET_FALSE:
             return {...state, isTrue: !state.isTrue}
