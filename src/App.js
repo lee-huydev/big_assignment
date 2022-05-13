@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect } from 'react';
+import { getApi } from './data'
+import { useStore, downJob } from './stores'
+import AddItem from "./components/AddItem/AddItem";
+import InputItem from './components/InputItem/InputItem';
+import ListItem from './components/ListItem/ListItem';
+import { Container } from './components/style/common'
 function App() {
+  const [ state, dispatch ] = useStore()
+  const api = 'https://db-fake-api.herokuapp.com/expense'
+  useEffect(()=> {
+    getApi(api)
+      .then(data => {
+        if(data.length > 0) {
+          dispatch(downJob(data))
+        }
+      })
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container>
+      {
+        state.isTrue ? <AddItem /> : <InputItem />
+      }
+      {
+        state.jobs.length > 0 
+        ? <ListItem />
+        : <h1 style={{textAlign: 'center'}}>No iTems</h1>
+      }
+    </Container>
+  )
 }
 
 export default App;

@@ -1,0 +1,7 @@
+export const SET_NAME = 'set_name'
+export const SET_AMOUNT = 'set_amount'
+export const SET_DATE = 'set_date'
+export const ADD_JOB = 'set_job'
+export const DEL_JOB = 'del_job'
+export const DOWN_JOB = 'down_job'
+export const SET_FALSE = 'set_false'
